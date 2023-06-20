@@ -1,0 +1,52 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.box {
+    width: 500px;
+    height: 350px;
+    background-color: rgba(61, 193, 41, 0.8);
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    margin: 5px;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    transition: background-color 1s linear, height 1s linear, width 1s linear, opacity 1s linear, box-shadow 1s linear;
+}
+
+#box1:hover{
+    background-color: red;
+    height: 100px;
+    width: 200px;
+}
+
+#box2:hover{
+    background-color: yellow;
+    height: 100px;
+    box-shadow: 10px 5px 5px teal;
+}
+
+#box3:hover{
+    background-color: orange;
+    opacity: 0.2;
+    width: 50px;
+}
+
+#box4:hover{
+    background-color: lightblue;
+    height: 100px;
+    border-style: dotted;
+}
+
+#box5:hover{
+    background-color: peru;
+    border-color: aqua;
+    width: 50px;
+}
+
+#box6:hover{
+    background-color: purple;
+    height: 100px;
+    width: 50px;
+}

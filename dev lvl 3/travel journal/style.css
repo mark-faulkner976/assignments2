@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    background: #F55A5A;
+    color: #FFFFFF;
+    align-self: center;
+    justify-content: center;
+}
+
+.header--image {
+    max-height: 80px;
+    padding: 20px;
+    
+}
+
+.nav--title {
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.places {
+    display: flex;
+    margin: 36px 40px;
+    
+}
+
+.places--personalPhoto {
+    width: 125px;
+    height: 168px;
+    border-radius: 5px;
+}
+
+.places--description {
+    font-weight: 400;
+    font-size: 10.24px;
+    line-height: 150%;
+}
+
+.places--box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 20px;
+    padding: 5px;
+    height: 168px;
+}
+
+.places--location {
+    font-weight: 400;
+    font-size: 10.24px;
+    line-height: 12px;
+    letter-spacing: 0.17em;
+    font-family: 'Inter';
+}
+
+.places--title {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    letter-spacing: 0;
+    margin-bottom: 14px;
+    margin-top: 5px 
+}
+
+.places--google {
+    color: #918E9B;
+    text-decoration-line: underline;
+    font-weight: 400;
+    font-size: 10.24px;
+    line-height: 12px;
+    letter-spacing: 0;
+    padding-left: 7px;
+}
+
+.places--date{
+    font-weight: 700;
+    font-size: 10.24px;
+    line-height: 12px;
+    margin-bottom: 10px;
+}
+
+hr {
+        color: grey;
+        background-color: grey;
+        height: .5;
+        border-color: grey;
+}

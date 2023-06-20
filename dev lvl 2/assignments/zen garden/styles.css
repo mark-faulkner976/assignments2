@@ -1,0 +1,256 @@
+@import url(http://fonts.googleapis.com/css?family=Julius+Sans+One|Libre+Baskerville:400,400italic);
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'Libre Baskerville', sans-serif;
+    background: linear-gradient(to right, #ffffff 0%,#ffffff 50%,#e5ede8 50%,#e5ede8 100%);
+    font-size: 100%;
+    
+}
+
+
+#header {
+    background: #2d6360 50% 0 url(http://www.csszengarden.com/214/huntington.jpg) no-repeat;
+    background-image: url(http://www.csszengarden.com/214/contours.png), url(http://www.csszengarden.com/214/noise.png), url(http://www.csszengarden.com/214/gridlines.png), url(http://www.csszengarden.com/214/huntington.jpg);
+    background-attachment: fixed, fixed, fixed, scroll;
+    background-repeat: repeat, repeat, repeat, no-repeat;
+    background-position: 0 0, 0 0, -5px -25px, 0 50%;
+    background-size: auto, auto, auto, cover;
+    text-align: center;
+    display: inline-grid;
+    grid-column: 1/7;
+    padding: 60px 0 50px 0;
+    color: aliceblue;
+    border-top: solid 12px rgba(19, 67, 71, 0.8);
+    box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.3)
+   }
+
+nav {
+    grid-column: 4/7;
+    grid-template-columns: auto auto auto auto;
+    display: inline-grid;
+}
+   
+#gridContainer{
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto auto;
+}
+
+
+h1::before{
+    display: inline-block; 
+    position: relative;
+    top: 80px;
+    background-image: url(http://www.csszengarden.com/214/enso.svg);
+    background-size: 100%;
+    content: "";
+    width: 125px;
+    height: 125px;
+    opacity: 0.7;
+    margin: -80px 20px 30px 0;
+}
+
+h1,
+h2 {
+ display: inline-block; 
+ padding: 0 10%;
+ margin: 0;
+ color: #fff;
+ font-weight: normal;
+ position: relative; top: -40px;
+}
+
+h1 {
+ padding-top: 50px;
+ margin-left: 80px;
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 3.2em;
+ text-transform: uppercase;
+}
+
+h2{
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    margin-left: 60px;
+}
+
+#design:hover{
+    color: #fff;
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+#design {
+    margin-top: 80px;
+    background: rgba(255,255,255,0.1);
+    text-transform: uppercase;
+    padding: 30px 50px;
+    grid-column: 1/5;
+}
+
+#arrow:hover{
+    color: #fff;
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+#arrow {
+    margin-top: 80px;
+    background: rgba(255,255,255,0.1);
+    text-transform: uppercase;
+    padding: 30px 50px;
+    grid-column: 5/6;
+}
+
+#enlightenment::before{
+    background-color: #fff;
+    content: " ";
+}
+
+abbr{
+    letter-spacing: 0.01em;
+    font-size: 0.9em;
+}
+
+#enlightenment {
+    display: inline-grid;
+    text-align: left;
+    grid-column: 3/4;
+    background-color: #fff;
+    padding-top: 20px;
+    justify-content: center;
+    padding-left: 200px;
+}
+
+p{
+    margin: 0.75em;
+}
+
+a{
+    font-family: 'Julius Sans One', sans-serif;
+}
+
+h3{
+    font-family: 'Julius Sans One', sans-serif;
+    text-transform: uppercase;
+    color: #2d6360;
+    font-size: 1.8em;
+    padding: 25px 0 0 0;
+    margin: 0.30em;
+}
+
+#typeOfZen{
+    grid-column: 5/7;
+    display: inline-grid;
+}
+
+#zenTypes {
+    list-style: none;
+}
+
+ul {
+    box-sizing: border-box;
+}
+
+li {
+    padding: 25px 25px 100px 50px;
+    border-top: solid 1px #d9e3dc;
+}
+
+.faq {
+    padding: 20px 20px 50px 25px;
+}
+
+#participation{
+    display: inline-block;
+    text-align: left;
+    grid-column: 3/4;
+    background-color: #fff;
+    padding-top: 20px;
+    justify-content: center;
+    padding-left: 200px;
+    background-attachment: scroll, scroll, fixed;
+    background-color: rgba(138,188,159,0.5);
+    background-image: url(http://www.csszengarden.com/214/contours-opaque.png), url(http://www.csszengarden.com/214/gridlines-opaque.png), url(http://www.csszengarden.com/214/bamboo.png);
+    background-repeat: repeat, repeat, no-repeat;
+    background-size: auto, auto, cover;
+}
+
+#bottomBenefits{
+    padding-bottom: 50px;
+}
+
+#faq{
+    grid-column: 4/7;
+    background-color: #fff;
+    justify-content: center;
+    background-attachment: scroll, scroll, fixed;
+    background-color: rgba(138,188,159,0.5);
+    background-image: url(http://www.csszengarden.com/214/contours-opaque.png), url(http://www.csszengarden.com/214/gridlines-opaque.png), url(http://www.csszengarden.com/214/bamboo.png);
+    background-repeat: repeat, repeat, no-repeat;
+    background-size: auto, auto, cover;
+}
+
+#faqLinks {
+    list-style: none;
+}
+
+#req{
+    display: inline-block;
+    text-align: left;
+    grid-column: 3/4;
+    background-color: #e5ede8;
+    padding-top: 20px;
+    justify-content: center;
+    padding-left: 200px;
+}
+
+#blank{
+    grid-column: 5/7;
+    color: #e5ede8;
+}
+
+#creator{
+    grid-column: 1/7;
+    background: #2d6360 50% 0 url(http://www.csszengarden.com/214/huntington.jpg) no-repeat;
+    background-image: url(http://www.csszengarden.com/214/contours.png), url(http://www.csszengarden.com/214/noise.png), url(http://www.csszengarden.com/214/gridlines.png), url(http://www.csszengarden.com/214/huntington.jpg);
+    background-attachment: fixed, fixed, fixed, scroll;
+    background-repeat: repeat, repeat, repeat, no-repeat;
+    background-position: 0 0, 0 0, -5px -25px, 0 50%;
+    background-size: auto, auto, auto, cover;
+    text-align: center;
+    display: inline-grid;
+    grid-column: 1/7;
+    padding: 60px 0 50px 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.3rem;
+}
+
+#footer{
+    grid-column: 1/7;
+    
+}
+
+footer a::before {
+    font-family: 'verdemoderna';
+}
+
+footer a.zen-validate-html::before {content: "5";}
+footer a.zen-validate-css::before {content: "3";}
+footer a.zen-license::before {content: "c";}
+footer a.zen-accessibility::before {content: "a";}
+footer a.zen-github::before {content: "g";}
+
+@media only screen and (max-width: 500px) {
+    #header {
+        grid-column: 1/-1;
+    }
+    
+    nav {
+        grid-column: 1/-1;
+    }
+}

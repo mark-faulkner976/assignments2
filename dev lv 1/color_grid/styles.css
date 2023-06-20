@@ -1,0 +1,223 @@
+* {
+    box-sizing: border-box;
+    font-size: 0px;
+}
+/*mobile design
+#box {
+    border: 2px solid black;
+}
+
+#box > h1 {
+    background-color: dodgerblue;
+}
+
+
+/*larger phones
+@media only screen and (min-width: 400px){
+    #box {
+        border: 2px dashed green;
+    }
+    
+    #box > h1 {
+        background-color: firebrick;
+    }
+}
+
+/*tablet
+@media only screen and (min-width: 650px){
+    #box {
+        border: 5px dashed purple;
+    }
+    
+    #box > h1 {
+        background-color: cornflowerblue;
+    }
+}
+
+/*example of a range of screen size
+@media only screen and (min-width: 650px) and (max-width: 700px){
+    body {
+        background-color: yellow;
+    }
+}*/
+
+
+#box1 {
+    display: inline-block;
+    background-color: #F5C6D6;
+    height: 50px;
+    width: 100%;
+    border: 5px white;
+}
+
+#box2 {
+    display: inline-block;
+    background-color: #EE2E84;
+    height: 40px;
+    width: 25%;
+    border: 5px solid white;
+}
+
+#box3 {
+    display: inline-block;
+    background-color: #EE2E84;
+    height: 40px;
+    width: 25%;
+    border: 5px solid white;
+}
+
+#box4 {
+    display: inline-block;
+    background-color: #EE2E84;
+    height: 40px;
+    width: 25%;
+    border: 5px solid white;
+}
+
+#box5 {
+    display: inline-block;
+    background-color: #EE2E84;
+    height: 40px;
+    width: 25%;
+    border: 5px solid white;
+}
+
+#box6 {
+    display: inline-block;
+    background-color: #85CFD8;
+    height: 40px;
+    width: 50%;
+    border: 5px solid white;
+}
+
+#box7 {
+    display: inline-block;
+    background-color: #85CFD8;
+    height: 40px;
+    width: 50%;
+    border: 5px solid white;
+}
+
+#box8 {
+    display: inline-block;
+    background-color: #8DC63F;
+    height: 40px;
+    width: 75%;
+    border: 5px solid white;
+}
+
+#box9 {
+    display: inline-block;
+    background-color: #E76E34;
+    height: 40px;
+    width: 25%;
+    border: 5px solid white;
+}
+
+@media only screen and (max-width: 768px){
+    #box1 {
+        display: inline-block;
+        background-color: #F5C6D6;
+        height: 50px;
+        width: 100%;
+        border: 5px white;
+    }
+    
+    #box2 {
+        display: inline-block;
+        background-color: #EE2E84;
+        height: 40px;
+        width: 100%;
+        border: 5px solid white;
+    }
+    
+    #box3 {
+        display: inline-block;
+        background-color: #EE2E84;
+        height: 40px;
+        width: 100%;
+        border: 5px solid white;
+    }
+    
+    #box4 {
+        display: inline-block;
+        background-color: #EE2E84;
+        height: 40px;
+        width: 100%;
+        border: 5px solid white;
+    }
+    
+    #box5 {
+        display: inline-block;
+        background-color: #EE2E84;
+        height: 40px;
+        width: 100%;
+        border: 5px solid white;
+    }
+    
+    #box6 {
+        display: inline-block;
+        background-color: #85CFD8;
+        height: 40px;
+        width: 100%;
+        border: 5px solid white;
+    }
+    
+    #box7 {
+        display: inline-block;
+        background-color: #85CFD8;
+        height: 40px;
+        width: 100%;
+        border: 5px solid white;
+    }
+    
+    #box8 {
+        display: inline-block;
+        background-color: #8DC63F;
+        height: 40px;
+        width: 100%;
+        border: 5px solid white;
+    }
+    
+    #box9 {
+        display: inline-block;
+        background-color: #E76E34;
+        height: 40px;
+        width: 100%;
+        border: 5px solid white;
+    }
+}
+
+/*html, body {
+    margin: 0;
+    padding: 0;
+}
+
+#flex-container {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    or  align-items: flex-end; as examples on how to move shit
+    height: 200px;
+    margin: 0 10px;
+}
+
+#flex-container > div:nth-child(1){
+    background-color: dodgerblue;
+    height: 30px;
+    margin: 0 10px;
+}
+
+#flex-container > div:nth-child(2){
+    background-color: firebrick;
+    height: 30px;
+    margin: 0 10px;
+}
+
+#flex-container > div:nth-child(3){
+    background-color: violet;
+    height: 30px;
+    margin: 0 10px;
+}
+*/

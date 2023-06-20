@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form name ='myForm' id = 'form'>
+        <input type="text" placeholder="First Name" name="firstName" class = name>
+        <input type="text" placeholder="Last Name" name="lastName" class = name>
+
+        DOB: <input type="date" name="dob" class = 'dob'>
+
+        Male: <input type="radio" name = 'gender' value="Male" class = "gender">
+        Female: <input type="radio" name = gender value="Female" class = "gender">
+        Other: <input type="radio" name = "gender" value="Other" class = "gender">
+
+        Location travelling to: <select name = 'city'>
+            <option value = 'Albequerque'>Albequerque</option>
+            <option value = 'Odessa, Russia'>Odessa, Russia</option>
+            <option value = 'Odessa, Texas'>Odessa, Texas</option>
+        </select>
+
+        Dietary restrictions, <b>select ALL that apply:</b>
+        Vegan: <input type="checkbox" value = 'vegan' name="diet">
+        Vegetarian: <input type="checkbox" value = 'vegetarian ' name = 'diet'>
+        Kosher: <input type="checkbox" value="kosher " name = 'diet'>
+        Lactose Free: <input type="checkbox" value="Lactose Free " name="diet">
+
+        <button>Submit</button>
+    </form>
+</body>
+<script src = 'main.js'></script>
+</html>

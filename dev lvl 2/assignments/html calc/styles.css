@@ -1,0 +1,23 @@
+.add {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 3px solid;
+    border-color: red;
+}
+
+.subtract {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 3px solid;
+    border-color: aqua;
+}
+
+.multiply {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 3px solid;
+    border-color: blueviolet;
+}

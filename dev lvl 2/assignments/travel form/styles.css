@@ -1,0 +1,18 @@
+body {
+    background-color: darkgrey;
+    color: black;
+    margin: 10px;
+    padding: 16px;
+    display: grid;
+    justify-content: space-between;
+}
+
+#form{
+    display: grid;
+}
+
+.name{
+    display: grid;
+    justify-content: space-between;
+    grid-row: 1/3;
+}

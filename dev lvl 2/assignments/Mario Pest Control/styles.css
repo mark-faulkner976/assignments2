@@ -1,0 +1,28 @@
+body {
+    background-color: beige;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+header {
+    text-align: center;
+    grid-column: 1/5;
+    color: brown;
+}
+
+form {
+    color: rgb(15, 171, 17);
+    grid-column: 2/4;
+    margin: auto;
+    padding: 16px;
+}
+
+footer {
+    margin: 5px;
+    padding: 16px;
+    text-align: center;
+}

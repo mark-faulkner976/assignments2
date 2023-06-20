@@ -1,0 +1,30 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+textarea {
+  overflow: auto;
+  text-align: left;
+  width: 25vw;
+}
+
+.codeGradient {
+  display: inline;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shade {
+  margin: 5px;
+  padding: 5px;
+}
+
+span {
+  margin: 15px;
+}

@@ -1,0 +1,38 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.App {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.square {
+  margin: 5px;
+  outline: auto;
+  width: 355px;
+  height: 320px;
+}
+
+/* learned how to do nline styling in JSX, left this obsolete, leaving for testing purposes if needed later #white {
+  background-color: white;
+}
+
+#red {
+  background-color: red;
+}
+
+#black {
+  background-color: black;
+}
+
+#green {
+  background-color: green;
+}
+
+#purple {
+  background-color: purple;
+} */

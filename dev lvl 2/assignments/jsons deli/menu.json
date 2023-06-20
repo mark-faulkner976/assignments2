@@ -1,0 +1,81 @@
+{
+    "appetizers": [
+        {
+            "name": "Egg",
+            "ingredients": ["Egg"],
+            "description": "Egg"
+        },
+        {
+            "name": "onion soup",
+            "ingredients": ["onion", "soup"],
+            "description": "delicious onions in a soup idk what you expected"
+        },
+        {
+            "name": "caeser salad",
+            "ingredients": ["the blood of god emperor julius Caeser", "fresh tomatoes", "iceburg lettuce"],
+            "description": "bloody sunday"
+        }
+    ],
+    "cold sandwhiches": [
+        {
+            "name": "cold kansas",
+            "ingredients": ["bread", "corn", "cheese"],
+            "description": "bread corn and cheese blended together, remolded into a sandwhich, and frozen at -20C for 2 hours minimum"
+        },
+        {
+            "name": "italian",
+            "ingredients": ["bread", "cheese", "pepperoni", "salami", "a finger of a loved one"],
+            "description": "it's not a real italian till you get proof of life"
+        },
+        {
+            "name": "frozen freddy",
+            "ingredients": ["custard", "bread", "Egg"],
+            "description": "what more could a fictitious nightmare creature want in life?"
+        }
+    ],
+    "hot sandwiches": [
+        {
+            "name": "Hot Kansas",
+            "ingredients": ["bread", "cheese", "corn"],
+            "description": "Bread, cheese, and corn blended together and remolded into a sandwhich and deep fried"
+        },
+        {
+            "name": "Turducken Tuesday",
+            "ingredients": ["turkey", "duck", "bread"],
+            "description": "a turducken with bread, you figure out the rest!"
+        },
+        {
+            "name": "simpen hard",
+            "ingredients": ["bread", "cheese", "pepperoni", "picture of ruby tuesday"],
+            "description": "for those who are truly down bad"
+        }
+    ],
+    "desserts": [
+        {
+            "name": "chocolate friday",
+            "ingredients": ["chocolate", "vanilla ice cream", "bananas"],
+            "description": "only served on wednesday"
+        },
+        {
+            "name": "fried pickles",
+            "ingredients": ["pickles", "maybe a finger"],
+            "description": "if you get a finger instead, you win! Dont ask what you win..."
+        }
+    ],
+    "drinks": [
+        {
+            "name": "green tea",
+        
+            "ingredients": ["green tea"],
+        
+            "description": "bruh its green tea"
+        },
+        {
+            "name": "coffee",
+        
+            "ingredients": ["coffee"],
+        
+            "description": "no we don't just 'sell' 'water'"
+        }
+    ]
+}
