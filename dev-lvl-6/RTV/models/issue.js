@@ -7,6 +7,10 @@ const issueSchema = new Schema ( {
         required: true
     },
     description: {
+        type: String,
+        required: true
+    },
+    imgUrl: {
         type: String
     },
     user: {
@@ -16,8 +20,7 @@ const issueSchema = new Schema ( {
     },
     comment: {
         type: Schema.Types.ObjectId,
-        ref: "Comment",
-        required: true
+        ref: "Comment"
     }
 })
 
