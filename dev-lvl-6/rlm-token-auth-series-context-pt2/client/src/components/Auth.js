@@ -30,6 +30,8 @@ export default function Auth(){
     login( inputs )
   }
 
+  
+
   return (
     <div className="auth-container">
       <h1>Todo App</h1>
