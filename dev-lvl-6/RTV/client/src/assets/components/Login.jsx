@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import LoginForm from "./LoginForm"
-// import context later
+import { UserContext } from '../context/UserProvider'
 
 const initInputs = { username: "", password: "" }
 
@@ -8,26 +8,26 @@ export default function Login() {
     const [ inputs, setInputs ] = useState( initInputs )
     const [ toggle, setToggle ] = useState( false )
 
-    // const for useContext
+    const { signup, login } = useContext( UserContext )
 
-    function handleChange( e ) {
+    function handleChange(e){
         const { name, value } = e.target
         setInputs( prevInputs => ( {
             ...prevInputs,
             [ name ]: value
         } ) )
     }
-
-    function handleSignup( e ) {
+    
+    function handleSignup(e){
         e.preventDefault()
         // can pass signup from context
-
+        signup( inputs )
     }
 
-    function handleLogin( e ) {
+    function handleLogin(e){
         e.preventDefault()
         // pass login from context
-
+        login( inputs )
     }
 
     return (
@@ -38,8 +38,8 @@ export default function Login() {
                 <>
                     <LoginForm 
                         handleChange={ handleChange }
-                        handleSignup={ handleSignup }
-                        inputs={ inputs }
+                        handleSubmit={ handleSignup }
+                        inputs={inputs}
                         btnText="Sign up"
                     />
                     <p onClick={() => setToggle( prev => !prev ) }>Already a member?</p>
@@ -48,7 +48,7 @@ export default function Login() {
                 <>
                     <LoginForm 
                         handleChange={ handleChange }
-                        handleSignup={ handleLogin }
+                        handleSubmit={ handleLogin }
                         inputs={ inputs }
                         btnText="Login"
                     />

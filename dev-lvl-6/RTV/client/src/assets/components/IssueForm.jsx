@@ -20,9 +20,8 @@ export default function IssueForm( props ) {
 
     function handleSubmit( e ) {
         e.preventDefault()
-        // add issue from context but passed as prop maybe?
-
-        
+        addIssue( inputs )
+        setInputs( initInputs )
     }
 
     const { title, description, imgUrl, comment } = inputs
@@ -39,7 +38,7 @@ export default function IssueForm( props ) {
                 name="description"
                 value={ description }
                 onChange={handleChange}
-                placeholder=""/>
+                placeholder="Describe your issue!"/>
             <input 
                 type="text"
                 name="imgUrl"
