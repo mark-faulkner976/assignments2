@@ -5,6 +5,7 @@ import Auth from './components/Auth.js'
 import Profile from './components/Profile.js'
 import Public from './components/Public.js'
 import { UserContext } from './context/UserProvider.js'
+import ProtectedRoute from './components/ProtectedRoute.js'
 
 export default function App(){
   const { token, logout } = useContext(UserContext)
@@ -18,13 +19,18 @@ export default function App(){
         />
         <Route 
           path="/profile"
-          element={<Profile />}
+          element={
+            <ProtectedRoute token={ token } redirectTo='/'>
+              <Profile />
+            </ProtectedRoute> }
         />
         <Route 
-          path="/public"
-          element={<Public />}
-        />
-      </Routes>
+          path='/public'
+          element={
+            <ProtectedRoute token={ token } redirectTo='/'>
+              <Public />
+            </ProtectedRoute>} />
+        </Routes>
     </div>
   )
 }

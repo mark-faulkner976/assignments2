@@ -5,6 +5,7 @@ import Navbar from './assets/components/Navbar'
 import Login from './assets/components/Login'
 import Profile from './assets/components/Profile'
 import Public from './assets/components/Public'
+import ProtectedRoute from './assets/components/ProtectedRoute'
 import { UserContext } from './assets/context/UserProvider'
 
 function App() {
@@ -12,17 +13,22 @@ function App() {
 
   return (
     <div className='app'>
-      <Navbar logout={ logout } />
+      { token && <Navbar logout={ logout } /> }
       <Routes>
         <Route 
           path='/'
-          element={ token ? <Navigate to="profile"/> : <Login />} />
+          element={ token ? <Navigate to="profile"/> : <Login /> } />
         <Route 
           path='/profile'
-          element={<Profile />} />
+          element={ <ProtectedRoute token={ token } redirectTo='/' > 
+            <Profile />
+          </ProtectedRoute> } />
         <Route 
           path='/public'
-          element={<Public />} />
+          element={
+            <ProtectedRoute token={ token } redirectTo='/' >
+              <Public />
+            </ProtectedRoute>} />
       </Routes>
     </div>
   )

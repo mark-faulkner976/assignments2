@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
-const userSchema = new Schema({
+const userSchema = new Schema( {
   username: {
     type: String,
     required: true,
@@ -21,7 +21,7 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   }
-})
+} )
 
 // pre-save hook to encrypt user PWs on signup
 userSchema.pre( "save", function( next ) {
@@ -32,7 +32,7 @@ userSchema.pre( "save", function( next ) {
     user.password = hash
     next()
   } )
-})
+} )
 
 // method to check encrypted pw on login
 userSchema.methods.checkPassword = function( passwordAttempt, callback ) {
