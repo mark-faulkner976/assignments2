@@ -18,10 +18,23 @@ const issueSchema = new Schema ( {
         ref: "User",
         required: true
     },
-    comment: {
+    upvotes: {
+        type: Number,
+        default: 0
+    },
+    downvotes: {
+        type: Number,
+        default: 0
+    },
+    user: {
         type: Schema.Types.ObjectId,
-        ref: "Comment"
-    }
-})
+        ref: 'User',
+        required: true
+    },
+    comments: [{
+        type: Schema.Types.Object,
+        ref: 'Comment'
+    }]
+} )
 
 module.exports = mongoose.model( "Issue", issueSchema )

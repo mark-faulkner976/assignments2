@@ -12,10 +12,7 @@ const userAxios = axios.create()
     export default function PublicContext( props ) {
         const [ publicIssues, setPublicIssues ] = useState( [] )
 
-        function getPublicIssues() {
-            userAxios.get("/api/issue")
-                .then( res => {
-                    
-                })
-        }
-    }
+        
+}
+
+        

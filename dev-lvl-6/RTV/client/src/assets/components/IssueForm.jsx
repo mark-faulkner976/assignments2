@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from 'react'
+import { UserContext } from '../context/UserProvider'
 
-const initInputs = {
-    title: "",
-    description: "",
-    imgUrl: ""
-}
+
 
 export default function IssueForm( props ) {
+    const initInputs = {
+        title: props.title || "",
+        description: props.description || "",
+        imgUrl: props.imgUrl || ""
+    }
+
     const [ inputs, setInputs ] = useState( initInputs )
     const { addIssue } = props
     
@@ -24,7 +27,7 @@ export default function IssueForm( props ) {
         setInputs( initInputs )
     }
 
-    const { title, description, imgUrl, comment } = inputs
+    const { title, description, imgUrl } = inputs
     return (
         <form onSubmit={ handleSubmit }>
             <input 

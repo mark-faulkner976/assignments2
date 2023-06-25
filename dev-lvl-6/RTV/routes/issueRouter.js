@@ -14,7 +14,7 @@ issuesRouter.get( "/", ( req, res, next ) => {
 } )
 
 // get issue by userId
-issuesRouter.get("/user", ( req, res, next ) => { 
+issuesRouter.get("/:user", ( req, res, next ) => { 
     Issue.find( { user: req.auth._id }, ( err, issues ) => {
         if( err ) {
             res.status( 500 )
@@ -54,7 +54,7 @@ issuesRouter.delete( "/:issueId", ( req, res, next ) => {
 // update issue
 issuesRouter.put( "/:issueId", ( req, res, next ) => {
     Issue.findOneAndUpdate(
-      { _id: req.params.IssueId, user: req.auth._id },
+      { _id: req.params.issueId, user: req.auth._id },
       req.body,
       { new: true },
       ( err, updatedIssue ) => {
