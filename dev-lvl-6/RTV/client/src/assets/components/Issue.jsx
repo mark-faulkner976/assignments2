@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import Comment from "./Comment";
+import CommentList from './CommentList'
 import CommentForm from "./CommentForm";
 import { UserContext } from "../context/UserProvider";
 
@@ -18,7 +20,10 @@ export default function Issue( props ) {
             <h3>{ description }</h3>
             <img src={ imgUrl } alt={ imgUrl } width={ 300 } />
             <button onClick={ () => deleteIssue( _id ) }>Delete Issue</button>
-            <CommentForm />
+            <CommentList
+            issueId={ _id } />
+            <CommentForm 
+            issueId={ _id } />
         </div>
     )
 }

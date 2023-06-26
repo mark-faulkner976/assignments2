@@ -15,7 +15,8 @@ export default function UserProvider(props) {
     const initState = { 
         user: JSON.parse( localStorage.getItem( "user" ) ) || {}, 
         token: localStorage.getItem( "token" ) || "", 
-        issues: []
+        issues: [],
+        comments: []
     }
 
     const [ userState, setUserState ] = useState( initState )
@@ -94,15 +95,17 @@ export default function UserProvider(props) {
     }
 
     // GET ALL COMMENTS
-    function getAllComments(issueId) {
-        userAxios.get(`/api/issue/${issueId}/comments`)
+    function getAllComments( issueId ) {
+        console.log( issueId )
+        userAxios.get(`/api/comment/${issueId}`)
             .then(res => setUserState(prevState => ({
                 ...prevState,
-                issues: prevState.issues.map(issue => 
-                    issueId === issue._id ? 
-                    {...issue, comments: [...res.data]} : 
-                    issue
-                )
+                comments: res.data
+                /*prevState.comments.map(comment => 
+                    issueId === comment.issueId ? 
+                    {...comment, comments: [...res.data]} : 
+                    comment*/
+                // 
             })))
             .catch(err => console.log(err.response.data.errMsg))
     }
@@ -119,13 +122,14 @@ export default function UserProvider(props) {
 
     // ADD A COMMENT
     function addComment( newComment, issueId ) {
-        userAxios.post(`/api/issue/${issueId}/comments`, newComment)
+        // userAxios.post(`/api/issue/${issueId}/comments`, newComment)
+        userAxios.post(`/api/comment/new`, newComment)
             .then(res => setUserState(prevState => ({
                 ...prevState,
-                issues: prevState.issues.map(issue => 
-                    issueId === issue._id ? 
-                    {...issue, comments: [...issue.comments, newComment]} : 
-                    issue
+                comments: prevState.comments.map(comment => 
+                    issueId === comment._id ? 
+                    { comments: [...comment.comments, newComment ] } : 
+                    comment
                 )
             })))
             .catch(err => console.log(err.response.data.errMsg))
@@ -144,7 +148,7 @@ export default function UserProvider(props) {
             .catch(err => console.log(err))
             return getUserIssues()
     }
-
+    // can save to state
     //UPVOTE ISSUE
     function upvoteIssue(issueId) {
         userAxios.put(`/api/issue/upvote/${issueId}`)
@@ -158,6 +162,9 @@ export default function UserProvider(props) {
                     } : 
                     issue
                 )
+                // upvotes: []
+                    // make a vote model
+                    // make a vote router
             })))
             .catch(err => console.log(err))
             return getAllIssues()

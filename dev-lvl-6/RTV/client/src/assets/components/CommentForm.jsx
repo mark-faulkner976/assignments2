@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserProvider";
 
 export default function CommentForm( props ) {
-    const initInputs = { comment: props.title || "" }
+    const { issueId } = props
+    const initInputs = { comment: "", issueId }
     const [ inputs, setInputs ] = useState( initInputs )
     const { addComment } = useContext( UserContext )
 
@@ -12,6 +13,7 @@ export default function CommentForm( props ) {
             ...prevInputs,
             [ name ]: value
         } ) )
+        console.log( inputs )
     }
 
     function handleSubmit( e ) {
@@ -20,17 +22,15 @@ export default function CommentForm( props ) {
         setInputs( initInputs )
     }
 
-    const { commentDescription } = inputs
-
-
+    const { comment } = inputs
 
     return (
         <form onSubmit={ handleSubmit }>
             <input
             placeholder="Comment"
             type="text"
-            name="commentDescription"
-            value={ commentDescription }
+            name="comment"
+            value={ comment }
             onChange={ handleChange }
             />
             <button>Add Comment</button>
