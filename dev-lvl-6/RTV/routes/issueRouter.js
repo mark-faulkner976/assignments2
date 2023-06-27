@@ -68,4 +68,37 @@ issuesRouter.put( "/:issueId", ( req, res, next ) => {
   })
 
 
+  // upvote
+  issuesRouter.put( "/upvote/:issueId", ( req, res, next ) => {
+    Issue.findOneAndUpdate(
+      { _id: req.params.issueId },
+      { $addToSet: { upVote: req.auth._id }, 
+      $pull: { downVote: req.auth._id } },
+      { new: true },
+      ( err, updatedVote ) => {
+        if( err ){
+          res.status( 500 )
+          return next( err )
+        }
+        return res.status( 201 ).send( updatedVote )
+      } )
+  } )
+
+
+  // downvote
+  issuesRouter.put( "/downvote/:issueId", ( req, res, next ) => {
+    Issue.findOneAndUpdate(
+      { _id: req.params.issueId },
+      { $addToSet: { downVote: req.auth._id }, 
+      $pull: { upVote: req.auth._id } },
+      { new: true },
+      ( err, updatedVote ) => {
+        if( err ){
+          res.status( 500 )
+          return next( err )
+        }
+        return res.status( 201 ).send( updatedVote )
+      } )
+  } )
+
 module.exports = issuesRouter

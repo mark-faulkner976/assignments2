@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
-
 export const UserContext = React.createContext()
-
 const userAxios = axios.create()
 
 userAxios.interceptors.request.use(config => {
@@ -15,9 +13,10 @@ export default function UserProvider(props) {
     const initState = { 
         user: JSON.parse( localStorage.getItem( "user" ) ) || {}, 
         token: localStorage.getItem( "token" ) || "", 
-        issues: [],
-        comments: []
+        issues: []
     }
+
+    const [ comments, setComments ] = useState( [] )
 
     const [ userState, setUserState ] = useState( initState )
 
@@ -95,21 +94,14 @@ export default function UserProvider(props) {
     }
 
     // GET ALL COMMENTS
-    function getAllComments( issueId ) {
-        console.log( issueId )
-        userAxios.get(`/api/comment/${issueId}`)
-            .then(res => setUserState(prevState => ({
-                ...prevState,
-                comments: res.data
-                /*prevState.comments.map(comment => 
-                    issueId === comment.issueId ? 
-                    {...comment, comments: [...res.data]} : 
-                    comment*/
-                // 
-            })))
+    function getAllComments() {
+        userAxios.get(`/api/comment`)
+        .then(res => setComments(
+            res.data
+        ))
             .catch(err => console.log(err.response.data.errMsg))
-    }
-
+        }
+        
     //GET ISSUE BY ID
     function getIssueById(issueId) {
         userAxios.get(`/api/issue/${issueId}`)
@@ -124,16 +116,12 @@ export default function UserProvider(props) {
     function addComment( newComment, issueId ) {
         // userAxios.post(`/api/issue/${issueId}/comments`, newComment)
         userAxios.post(`/api/comment/new`, newComment)
-            .then(res => setUserState(prevState => ({
+            .then(res => setComments(prevState => ([
                 ...prevState,
-                comments: prevState.comments.map(comment => 
-                    issueId === comment._id ? 
-                    { comments: [...comment.comments, newComment ] } : 
-                    comment
-                )
-            })))
-            .catch(err => console.log(err.response.data.errMsg))
-            return getAllComments( issueId )
+                newComment                
+            ])))
+            .catch(err => console.log( err.response.data.errMsg ) )
+            return getAllComments()
     }
 
     // EDIT ISSUE
@@ -146,49 +134,11 @@ export default function UserProvider(props) {
                     issue._id !== issueId ? issue : res.data)}))
                 )
             .catch(err => console.log(err))
-            return getUserIssues()
+            // return getUserIssues()
     }
-    // can save to state
-    //UPVOTE ISSUE
-    function upvoteIssue(issueId) {
-        userAxios.put(`/api/issue/upvote/${issueId}`)
-            .then(res => setUserState(prevState => ({
-                ...prevState,
-                issues: prevState.issues.map(issue => 
-                    issueId = issue._id ?
-                    {
-                        ...issue, 
-                        upvotes: [...issue.upvotes, res.data]
-                    } : 
-                    issue
-                )
-                // upvotes: []
-                    // make a vote model
-                    // make a vote router
-            })))
-            .catch(err => console.log(err))
-            return getAllIssues()
-        }
+    
 
-    //DOWNVOTE ISSUE
-    function downvoteIssue(issueId) {
-        userAxios.put(`/api/issue/downvote/${issueId}`)
-            .then(res => setUserState(prevState => ({
-                ...prevState,
-                issues: prevState.issues.map(issue => 
-                    issueId = issue._id ?
-                    {
-                        ...issue, 
-                        downvotes: [...issue.downvotes, res.data]
-                    } : 
-                    issue
-                )
-            })))
-            .catch(err => console.log(err))
-            return getAllIssues()
-    }
-
-    //DELETE ISSUE
+    // DELETE ISSUE
     function deleteIssue( issueId ) {
         userAxios.delete( `/api/issue/${issueId}` )
             .then(res => setUserState( prevState => ({
@@ -196,7 +146,17 @@ export default function UserProvider(props) {
                 issues: prevState.issues.filter( issue => issue._id !== issueId )
             } ) ) )
             .catch( err => console.log( err ) )
-            return getUserIssues()
+            // return getUserIssues()
+    }
+
+    // DELETE comment
+    function deleteComment( commentId ) {
+        userAxios.delete( `/api/comment/${commentId}` )
+            .then(res => setComments( prevState => (
+                [ ...prevState,
+                prevState.filter( comment => comment._id !== commentId ) ]
+             ) ) )
+            .catch( err => console.log( err ) )
     }
 
     function resetAuthErr() {
@@ -222,9 +182,9 @@ export default function UserProvider(props) {
                 logout,
                 addIssue,
                 addComment,
-                upvoteIssue,
-                downvoteIssue,
-                resetAuthErr
+                resetAuthErr,
+                comments,
+                deleteComment
             } }>
             { props.children }
         </UserContext.Provider>

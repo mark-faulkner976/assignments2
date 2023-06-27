@@ -14,13 +14,14 @@ export default function CommentList( props ) {
         //save state
 
     useEffect( () => {
-        console.log( issueId )
-        getAllComments( issueId )
+        getAllComments()
     }, [] )
+
+    const filteredComments = comments.filter( comment => comment.issueId === issueId )
 
     return (
         <div>
-            { comments.map( comment => <Comment { ...comment } key={ comment._id } />) }
+            { filteredComments.map( comment => <Comment { ...comment } key={ comment._id } />) }
         </div>
     )
 }

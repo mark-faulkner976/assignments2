@@ -4,12 +4,15 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import UserProvider from './assets/context/UserProvider.jsx'
+import PublicProvider from './assets/context/PublicProvider.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <PublicProvider>
+          <App />
+        </PublicProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,

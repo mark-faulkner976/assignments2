@@ -15,12 +15,14 @@ export default function LoginForm( props ) {
     return (
         <form onSubmit={handleSubmit}>
         <input 
+            required
             type="text"
             value={username}
             name="username"
             onChange={handleChange}
             placeholder="Username"/>
             <input 
+            required
             type="text"
             value={password}
             name="password"

@@ -32,8 +32,16 @@ const issueSchema = new Schema ( {
         required: true
     },
     comments: [{
-        type: Schema.Types.Object,
+        type: Schema.Types.ObjectId,
         ref: 'Comment'
+    }],
+    upVote: [{
+        type: Schema.Types.ObjectId,
+        ref:"User"
+    }],
+    downVote: [{
+        type: Schema.Types.ObjectId,
+        ref:"User"
     }]
 } )
 
