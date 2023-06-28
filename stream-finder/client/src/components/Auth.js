@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import AuthForm from './AuthForm.js'
 import { UserContext } from '../context/UserProvider.js'
+import Search from './Search.js'
 
 const initInputs = { username: "", password: "" }
 
@@ -8,10 +9,10 @@ export default function Auth() {
     const [inputs, setInputs] = useState(initInputs)
     const [toggle, setToggle] = useState(false)
 
-    const { signup, login, errMsg, resetAuthErr } = useContext(UserContext)
+    const { signup, login, errMsg, resetAuthErr } = useContext( UserContext )
 
     function handleChange(e){
-      const {name, value} = e.target
+      const { name, value } = e.target
       setInputs(prevInputs => ({
         ...prevInputs,
         [name]: value
@@ -33,30 +34,46 @@ export default function Auth() {
       resetAuthErr()
     }
 
+    function testFunction(e) {
+        e.preventDefault()
+        console.log( "Search button works" )
+    }
+
     return (
       <div className="auth-container">
-        <h1>Show Finder App</h1>
+        <h1>Show-Finder App</h1>
+        <h3>Signup to save your shows!</h3>
         { !toggle ?
           <>
             <AuthForm 
-              handleChange={handleChange}
-              handleSubmit={handleSignup}
-              inputs={inputs}
+              handleChange={ handleChange }
+              handleSubmit={ handleSignup }
+              inputs={ inputs }
               btnText="Sign up"
               errMsg={ errMsg }
             />
             <p onClick={ toggleForm }>Already a member?</p>
+            <Search 
+                handleChange={ handleChange }
+                handleSubmit={ testFunction } 
+                inputs={ inputs }
+                errMsg={ errMsg } />
           </>
         :
           <>
             <AuthForm 
               handleChange={handleChange}
               handleSubmit={handleLogin}
-              inputs={inputs}
+              inputs={ inputs }
               btnText="Login"
               errMsg={ errMsg }
             />
             <p onClick={ toggleForm }>Not a member?</p>
+            <Search 
+                handleChange={ handleChange }
+                handleSubmit={ testFunction } 
+                inputs={ inputs }
+                errMsg={ errMsg } />
           </>
         }
       </div>
