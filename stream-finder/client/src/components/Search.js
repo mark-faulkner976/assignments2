@@ -31,22 +31,22 @@ export default function Search( props ) {
   }
   
   return (
-    <form onSubmit={ handleSearch }>
+    <form onSubmit={ handleSearch } className='search-form'>
 
-      <h1>Search for a show and see where it's streaming!</h1>
+      <h2>Search for a show or movie and see where it's streaming!</h2>
 
-      <input 
+      <p><b>Title: </b><input 
         type="text" 
         value={ searchParams.title } 
         name="title" 
         onChange={ handleInputChange } 
-        placeholder="Title of Movie or Show"/>
+        placeholder="Title of Movie or Show" />
+      </p>
 
       <select name='output_language' value={ searchParams.output_language } id='language' onChange={ handleInputChange }>
-        <option value="en">Select Language</option>
+        <option value="">Select Language</option>
         <option value='en' >English</option>
         <option value='es' >Spanish</option>
-        <option value='zh' >Chinese</option>
       </select>
 
       <input 
@@ -65,7 +65,6 @@ export default function Search( props ) {
       checked={ searchParams.show_type === 'series' } 
       onChange={ handleInputChange } /> TV Series
       <button>Search</button>
-      <p style={ { color: "red" } }>{ errMsg }</p>
     </form>
   )
 }

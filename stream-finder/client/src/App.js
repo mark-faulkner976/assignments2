@@ -7,16 +7,16 @@ import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './components/Profile';
 
-
 function App() {
   const { token, logout } = useContext( UserContext )
+
   return (
     <div className="App">
       { token && <Navbar logout={ logout } /> }
       <Routes>
         <Route 
           path='/'
-          element={ token ? <Navigate to="/profile" /> : <Auth /> } />
+          element={ <Auth /> } />
         <Route 
           path='/profile'
           element={
@@ -24,7 +24,7 @@ function App() {
               <Profile />
             </ProtectedRoute>
           } />
-        {/* list of popular shows, navigates to automatically if logged in, has search capabilities */}
+        {/* list of popular shows(not sure if possible with current API, may just add some as default), navigates to automatically if logged in, has search capabilities */}
       </Routes>
     </div>
   );

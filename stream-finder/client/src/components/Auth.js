@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import AuthForm from './AuthForm.js'
 import { UserContext } from '../context/UserProvider.js'
 import Search from './Search.js'
+import SearchList from './SearchList.js'
 
 const initInputs = { username: "", password: "" }
 
@@ -9,7 +10,7 @@ export default function Auth() {
     const [inputs, setInputs] = useState(initInputs)
     const [toggle, setToggle] = useState(false)
 
-    const { signup, login, errMsg, resetAuthErr } = useContext( UserContext )
+    const { signup, login, errMsg, resetAuthErr, searchResults, token } = useContext( UserContext )
 
     function handleChange(e){
       const { name, value } = e.target
@@ -34,46 +35,55 @@ export default function Auth() {
       resetAuthErr()
     }
 
-    function testFunction(e) {
-        e.preventDefault()
-        console.log( "Search button works" )
-    }
+    // function testFunction(e) {
+    //     e.preventDefault()
+    //     console.log( "Search button works" )
+    // }
 
     return (
       <div className="auth-container">
         <h1>Show-Finder App</h1>
-        <h3>Signup to save your shows!</h3>
         { !toggle ?
           <>
-            <AuthForm 
+            { !token && 
+              <>
+              <h3>Signup to save your shows!</h3>
+              <AuthForm 
               handleChange={ handleChange }
               handleSubmit={ handleSignup }
               inputs={ inputs }
               btnText="Sign up"
               errMsg={ errMsg }
-            />
-            <p onClick={ toggleForm }>Already a member?</p>
+              /> 
+              <p onClick={ toggleForm }>Already a member?</p>
+            </>}
             <Search 
                 handleChange={ handleChange }
-                handleSubmit={ testFunction } 
                 inputs={ inputs }
                 errMsg={ errMsg } />
+            { searchResults && <SearchList />}
           </>
         :
           <>
-            <AuthForm 
-              handleChange={handleChange}
-              handleSubmit={handleLogin}
-              inputs={ inputs }
-              btnText="Login"
-              errMsg={ errMsg }
-            />
-            <p onClick={ toggleForm }>Not a member?</p>
+            { !token && 
+            <>
+              <h3>Signup to save your shows!</h3>
+                <AuthForm 
+                handleChange={handleChange}
+                handleSubmit={handleLogin}
+                inputs={ inputs }
+                btnText="Login"
+                errMsg={ errMsg }
+                /> 
+              <p onClick={ toggleForm }>Not a member?</p>
+            </>
+            }
             <Search 
-                handleChange={ handleChange }
-                handleSubmit={ testFunction } 
+                handleChange={ handleChange } 
                 inputs={ inputs }
                 errMsg={ errMsg } />
+            { searchResults && <SearchList />}
+
           </>
         }
       </div>

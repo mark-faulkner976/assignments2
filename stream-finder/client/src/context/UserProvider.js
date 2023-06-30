@@ -49,12 +49,12 @@ const titleSearch = {
     }
   }
 
-try {
-	const response = await axios.request( titleSearch )
-	console.log(response.data)
-} catch (error) {
-	console.error(error)
-}
+// try {
+// 	const response = await axios.request( titleSearch )
+// 	console.log(response.data.result)
+// } catch (error) {
+// 	console.error(error)
+// }
 
 export default function UserProvider({ children }) {
   const initUserState = { 
@@ -65,6 +65,9 @@ export default function UserProvider({ children }) {
   }
   // sets user state to blank unless they are logged in
   const [userState, setUserState] = useState(initUserState)
+
+  // sets fav show list
+  const [ favShows, setFavShows ] = useState([])
 
 
   // signup
@@ -96,6 +99,7 @@ export default function UserProvider({ children }) {
           user,
           token
         }))
+        getUserShows()
       })
       .catch(err => handleAuthError(err.response.data.errMsg))
   }
@@ -109,6 +113,7 @@ export default function UserProvider({ children }) {
       token: "",
       todos: []
     })
+    window.location.reload()
   }
 
   // handle error
@@ -127,31 +132,34 @@ export default function UserProvider({ children }) {
   }
 
   // change to a get user favorites
-//   function getUserTodos(){
-//     userAxios.get("/api/todo/user")
-//       .then(res => {
-//         setUserState(prevState => ({
-//           ...prevState,
-//           todos: res.data
-//         }))
-//       })
-//       .catch(err => console.log(err.response.data.errMsg))
-//   }
+  function getUserShows(){
+    userAxios.get( "/api/show" )
+      .then(res => setFavShows(
+          res.data
+        ) )
+      // .then( res => console.log( "res: ", res) )
+      .catch(err => console.log(err.response.data.errMsg))
+  }
 
+  // console.log( "fav Shows: ", favShows)
 
   // change to an add user favorites
-//   function addTodo(newTodo){
-//     userAxios.post("/api/todo", newTodo)
-//       .then(res => {
-//         setUserState(prevState => ({
-//           ...prevState,
-//           todos: [...prevState.todos, res.data]
-//         }))
-//       })
-//       .catch(err => console.log(err.response.data.errMsg))
-//   }
+  function addShow(favShow){
+    userAxios.post( "/api/new", favShow )
+      .then(res => {
+        setFavShows(prevState => ([ ...prevState, res.data ]))
+      })
+      .catch(err => console.log(err.response.data.errMsg))
+  }
 
-  
+  // remove fav
+  function removeFav( favShow ) {
+    userAxios.delete( `/api/show/${ favShow }` )
+      .then( res => {
+        setFavShows( prevState => prevState.filter( show => show._id !== favShow ) )
+      })
+      .catch(err => console.log(err.response.data.errMsg))
+  }
 
 // setting up the search functionality
 
@@ -162,6 +170,7 @@ export default function UserProvider({ children }) {
     output_language: '',
     country: 'us'
   } )
+
   //sets a state for the search parameters
   const [ searchResults, setSearchResults ] = useState([])
 
@@ -175,14 +184,12 @@ export default function UserProvider({ children }) {
                   'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
                 },
           } )
-          setSearchResults( response.data ) 
+          // result comes in an object called result that is an array. this just makes it an array of the bat
+          setSearchResults( response.data.result ) 
       } catch ( err ) {
         console.log( err.response.data.errMsg )
       }
   }
-
-  console.log( "SearchParams: ", searchParams )
-  console.log( "Search Results:", searchResults )
 
   return (
     <UserContext.Provider
@@ -195,7 +202,12 @@ export default function UserProvider({ children }) {
         searchParams,
         setSearchParams,
         searchStreaming,
-        searchResults
+        searchResults,
+        getUserShows,
+        favShows,
+        setFavShows,
+        addShow,
+        removeFav
       }}>
       { children }
     </UserContext.Provider>

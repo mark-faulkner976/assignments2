@@ -1,38 +1,154 @@
+/* Light mode styles */
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input {
+  margin: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar {
+  display: flex;
+  justify-content:flex-end ;
+  align-items: center;
+  padding: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+button {
+  border-radius: 5px;
+}
+
+.navbar-item {
+  cursor: pointer;
+  margin-right: 30px;
+  font-size: .9vw;
+}
+
+.navbar-item:hover {
+  text-decoration: underline;
+  background-color: #7f7f7f;
+}
+
+.search-card {
+  max-height: 600px;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  border-radius: 10px;
+  max-width: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.title-year {
+  display: flex;
+  align-items: center;
+}
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.favButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+}
+
+.search-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.search-card ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.search-card p {
+  margin: 0;
+  padding: 5px;
+}
+
+.genre-section {
+  display: flex;
+  align-items: center;
+}
+
+.genre-section p {
+  margin-right: 5px;
+}
+
+.genre-list {
+  display: flex;
+}
+
+.genre-list span {
+  margin-right: 5px;
+}
+
+.genre-list span:last-child {
+  margin-right: 0;
+}
+
+.streaming-section {
+  display: flex;
+  align-items: center;
+}
+
+.streaming-section h4 {
+  margin-right: 5px;
+}
+
+.streaming-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.streaming-list span {
+  margin-right: 5px;
+} 
+
+.streaming-list span:last-child {
+  margin-right: 0;
+}
+
+.search-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.search-form > * {
+  margin: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #333;
+    color: #f5f5f5;
   }
-  to {
-    transform: rotate(360deg);
+  .navbar {
+    color: #ffffff;
+    height: 5vh;
+    padding: 5px;
+  }
+
+  .search-card {
+    box-shadow: 0 2px 4px rgba(241, 233, 233, 0.815);
   }
 }
