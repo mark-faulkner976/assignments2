@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 export const UserContext = React.createContext()
@@ -11,43 +11,43 @@ userAxios.interceptors.request.use(config => {
   return config
 })
 
-const genres = {
-    method: 'GET',
-    url: 'https://streaming-availability.p.rapidapi.com/v2/genres',
-    headers: {
-      'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-      'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-    }
-  }
+// const genres = {
+//     method: 'GET',
+//     url: 'https://streaming-availability.p.rapidapi.com/v2/genres',
+//     headers: {
+//       'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+//       'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+//     }
+//   }
 
-const imdbId = {
-  method: 'GET',
-  url: 'https://streaming-availability.p.rapidapi.com/v2/get/basic',
-  params: {
-    country: 'us',
-    imdb_id: 'tt1877830',
-    output_language: 'en'
-  },
-  headers: {
-    'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-    'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-  }
-}
+// const imdbId = {
+//   method: 'GET',
+//   url: 'https://streaming-availability.p.rapidapi.com/v2/get/basic',
+//   params: {
+//     country: 'us',
+//     imdb_id: 'tt1877830',
+//     output_language: 'en'
+//   },
+//   headers: {
+//     'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+//     'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+//   }
+// }
 
-const titleSearch = {
-    method: 'GET',
-    url: 'https://streaming-availability.p.rapidapi.com/v2/search/title',
-    params: {
-      title: 'justice league',
-      country: 'us',
-      // show_type: 'movie',
-      output_language: 'en'
-    },
-    headers: {
-      'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-      'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-    }
-  }
+// const titleSearch = {
+//     method: 'GET',
+//     url: 'https://streaming-availability.p.rapidapi.com/v2/search/title',
+//     params: {
+//       title: 'justice league',
+//       country: 'us',
+//       // show_type: 'movie',
+//       output_language: 'en'
+//     },
+//     headers: {
+//       'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+//       'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+//     }
+//   }
 
 // try {
 // 	const response = await axios.request( titleSearch )
