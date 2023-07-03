@@ -64,7 +64,7 @@ export default function Search( props ) {
       value='series' 
       checked={ searchParams.show_type === 'series' } 
       onChange={ handleInputChange } /> TV Series
-      <button>Search</button>
+      <button className='search-btn'>Search</button>
     </form>
   )
 }
