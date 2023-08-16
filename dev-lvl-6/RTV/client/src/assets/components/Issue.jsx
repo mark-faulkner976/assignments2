@@ -35,7 +35,7 @@ export default function Issue( props ) {
             <h1>{ title }</h1>
             <h3>{ description }</h3>
             <img src={ imgUrl } alt={ imgUrl } width={ 300 } />
-            { deleteToggle && <button onClick={ () => deleteIssue( _id ) }>Delete Issue</button>}
+            { deleteToggle && <button onClick={ () => deleteIssue( _id ) }>Delete Issue</button> }
             <p>{ upVote.length }</p>
             <button onClick={ upVotes } >upvote</button>
             <p>{ downVote.length }</p>

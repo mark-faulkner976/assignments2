@@ -10,7 +10,7 @@ app.use( express.json() ) // looks for a req body, turns it into 'req.body'
 app.use( morgan( 'dev' ) )
 
 // connect to db
-mongoose.connect( , () => console.log( 'connected to database' ) )
+mongoose.connect( `${process.env.MONGO_URL}`, () => console.log( 'connected to database' ) )
 
 // fake data
 // const bounties = [

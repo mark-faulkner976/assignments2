@@ -30,7 +30,7 @@ function check(a, b) {
     }
     
 }
-check(["yellow", "green", "^up^", "down", "dog"], "h")
+check(["#3", "$$$", "C%4!", "Hey!"], "!")
 
 /* Write a function that takes a num1 and num2 and returns whether num1 is divisible by num2.*/
 
