@@ -18,7 +18,6 @@ export default function FriendList() {
     return (
         <div>
             {friends}
-            
         </div>
     )
 }

@@ -45,4 +45,3 @@ document['addItem'].addEventListener('submit', function(event) {
     li.append(X)
 
 })
-

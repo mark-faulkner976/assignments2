@@ -29,7 +29,6 @@ function App() {
   console.log(info)
 
   function handleClick(firstName, lastName, phone, email, birthPlace, favFood, personal) {
-    console.log("i work")
     setBadge(prevBadge => {
       return [
         ...prevBadge,
@@ -70,6 +69,7 @@ function App() {
       />
     )
   })
+  
   function offButton() {
     if((info.firstName.length && info.lastName.length && info.phone.length && info.email.length && info.favFood.length && info.birthPlace.length && info.personal.length) < 3 ){
       return false

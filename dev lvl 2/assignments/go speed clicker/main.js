@@ -17,4 +17,3 @@ function clickCounter() {
     showValue();
   }
 }
-

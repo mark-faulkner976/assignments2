@@ -131,24 +131,19 @@ function fight() {
         }
 }
 
-
-
 function item() {
     let loot = Math.floor(Math.random() * 3) + 1
     if (loot === 1) {
         inventory.push('7 hamburgers')
-        console.log('you found 7 hamburgers of the desicrated corpse')
+        console.log('you found 7 hamburgers on the desicrated corpse')
     } else if (loot === 2) {
         inventory.push('2 golf balls')
-        console.log('you found 2 golf balls of the desicrated corpse')
+        console.log('you found 2 golf balls on the desicrated corpse')
     } else {
         inventory.push('8 earth worms')
-        console.log('you found 8 earth worms of the desicrated corpse')
+        console.log('you found 8 earth worms on the desicrated corpse')
     }
 }
-
-
-
 
 while (userHP > 0){
     walk()
