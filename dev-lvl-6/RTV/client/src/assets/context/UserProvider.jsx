@@ -124,6 +124,8 @@ export default function UserProvider(props) {
             return getAllComments()
     }
 
+    
+
     // EDIT ISSUE
     function editIssue(updates, issueId) {
         userAxios.put(`/api/issue/${issueId}`, updates)
