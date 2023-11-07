@@ -84,7 +84,7 @@ function UglyContextProvider(props) {
         .catch((err) => console.log(err))
     }
 
-    return(
+    return (
         <UglyContext.Provider value={ uglyThing && {
             uglyArray,
             uglyThing,

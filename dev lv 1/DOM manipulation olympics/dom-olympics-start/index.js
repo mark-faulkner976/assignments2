@@ -54,7 +54,6 @@ colors.addEventListener('click' , () => {
 
 
 // gold
-
 const form = document['message']
 form.addEventListener('submit', function(event){
     event.preventDefault()

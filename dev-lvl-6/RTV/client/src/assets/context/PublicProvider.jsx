@@ -18,7 +18,7 @@ const userAxios = axios.create()
             .then(res => setPublicIssues(res.data))
                 .catch(err => console.log(err.response.data.errMsg))
             }
-            console.log( publicIssues )
+            // console.log( publicIssues )
 
         useEffect( () => {
             getPublicIssues()
