@@ -5,35 +5,36 @@ const Comment = require( '../models/comment' );
 
 // get all comments on an issue
 commentRouter.get( "/", ( req, res, next ) => {
-    Comment.find(
+    try { 
+        Comment.find(
         ( err, comments ) => {
             if( err ) {
                 res.status( 500 )
                 return next( err )
             }
             res.status( 200 ).send( comments )
-        }
-    )
+        })
+    }
+    catch {
+        res.status(500)
+        res.send({ error : "Get error!" })
+    }
 } )
 
 // add new comment on an issue
-commentRouter.post('/new', (req, res, next) => {
+commentRouter.post('/new/:issueId', async (req, res, next) => {
     
-    req.body.userId = req.auth._id
-    const newComment = new Comment( req.body )
-
     try {
-        newComment.save((err, comment) => {
-            if (err) {
-                res.send(err)
-            } else {
-                res.send(comment)
-                console.log('comment saved', comment)
-            }
-        })
-    } catch {
-        res.status(500)
-        res.send({ error : "Request error!" })
+        req.body.userId = req.auth._id
+        req.body.issueId = req.params.issueId
+        const newComment = new Comment( req.body )
+        const savedComment = await newComment.save()
+        console.log( savedComment )
+        return res.status( 201 ).send( savedComment )
+
+    } catch( err ) {
+        res.status( 500 ) 
+        return next( err )
     }
 })
 
@@ -42,7 +43,8 @@ commentRouter.post('/new', (req, res, next) => {
 commentRouter.delete( '/:commentId', ( req, res, next ) => {
     req.body.user = req.auth._id
     const issueId = req.params.issueId
-    Comment.findOneAndDelete(
+    try {
+        Comment.findOneAndDelete(
         { _id: req.params.commentId, user: req.body.user },
         ( err ) => {
             if( err ){
@@ -51,6 +53,11 @@ commentRouter.delete( '/:commentId', ( req, res, next ) => {
             }
             return res.status( 200 ).send( `Successfully deleted comment` )
         })
+    }
+    catch {
+        res.status(500)
+        res.send({ error : "delete error!" })
+    }
 })
 
 module.exports = commentRouter

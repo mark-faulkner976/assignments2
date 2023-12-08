@@ -15,26 +15,9 @@ const issueSchema = new Schema ( {
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true
-    },
-    upvotes: {
-        type: Number,
-        default: 0
-    },
-    downvotes: {
-        type: Number,
-        default: 0
-    },
-    user: {
-        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    comments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
-    }],
     upVote: [{
         type: Schema.Types.ObjectId,
         ref:"User"

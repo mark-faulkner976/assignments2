@@ -8,8 +8,13 @@ export default function Public() {
         getPublicIssues
     } = useContext( PublicContext )
 
-    console.log(publicIssues)
+    // console.log(publicIssues)
+    // makes sure the public issues are up to date on public page
+    useEffect( () => {
+        getPublicIssues()
+    }, [] )
 
+    // lil sorting algorithm i thot of
     function sortie( a, b ) {
         if ( a.upVote.length === b.upVote.length ) {
             return 0

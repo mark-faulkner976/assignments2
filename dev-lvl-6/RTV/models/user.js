@@ -22,10 +22,10 @@ const userSchema = new Schema ( {
         type: Boolean,
         default: false
     },
-    issues: {
-      type: Array,
-      default: []
-    }
+    // issues: {
+    //   type: Array,
+    //   default: []
+    // }
 } )
 
 // pre-save hook to encrypt user PWs on signup

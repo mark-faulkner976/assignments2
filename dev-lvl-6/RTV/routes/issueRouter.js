@@ -1,20 +1,29 @@
 const express = require( "express" )
 const issuesRouter = express.Router()
 const Issue = require( '../models/issue' )
+const User = require( '../models/user')
+const Comment = require( '../models/comment')
 
 // Get all Issues
-issuesRouter.get( "/", ( req, res, next ) => {
-    Issue.find( ( err, issues ) => {
-        if( err ) {
-            res.status( 500 )
-            return next( err )
-        }
-        return res.status( 200 ).send( issues )
-    })
+issuesRouter.get( "/", async ( req, res, next ) => {
+  try {
+    const issues = await Issue.find()
+    return res.status( 200 ).send( issues )
+  } catch ( error ) {
+    res.status( 500 )
+    return next( error )
+  }
+    // Issue.find( ( err, issues ) => {
+    //     if( err ) {
+    //         res.status( 500 )
+    //         return next( err )
+    //     }
+    //     return res.status( 200 ).send( issues )
+    // })
 } )
 
 // get issue by userId
-issuesRouter.get("/:user", ( req, res, next ) => { 
+issuesRouter.get("/findUser/:user", ( req, res, next ) => { 
     Issue.find( { user: req.auth._id }, ( err, issues ) => {
         if( err ) {
             res.status( 500 )
@@ -23,6 +32,28 @@ issuesRouter.get("/:user", ( req, res, next ) => {
         return res.status( 200 ).send( issues )
     } )
 })
+
+// get all with info
+issuesRouter.get( "/getallinfo", async ( req, res, next )  => {
+  try {
+
+    const issues = await Issue.find()
+
+    const issuesWithInfo = await Promise.all( issues.map( async (issue) => {
+      const comments = await Comment.find( { issueId: issue._id } )
+      const user = await User.findById( issue.user )
+      return { ...issue.toObject(), comments, user: user.withoutPassword() }
+    } ) );
+
+    return res.status( 200 ).send( issuesWithInfo );
+    
+  } catch (error) {
+
+    res.status( 500 );
+    return next( error );
+
+  }
+} );
 
 // add new issues
 issuesRouter.post( "/", ( req, res, next ) => {
@@ -100,5 +131,15 @@ issuesRouter.put( "/:issueId", ( req, res, next ) => {
         return res.status( 201 ).send( updatedVote )
       } )
   } )
+
+
+  // issuesRouter.get('/testing', async(req, res, next) => {
+  //   try {
+  //     return res.status(200).send('test')
+  //   } catch (err) {
+  //     res.status(500)
+  //     return next(err)
+  //   }
+  // })
 
 module.exports = issuesRouter

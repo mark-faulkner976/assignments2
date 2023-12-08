@@ -18,7 +18,7 @@ export default function CommentForm( props ) {
 
     function handleSubmit( e ) {
         e.preventDefault()
-        addComment( inputs )
+        addComment( inputs, issueId )
         setInputs( initInputs )
     }
 

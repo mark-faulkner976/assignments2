@@ -83,6 +83,7 @@ export default function UserProvider(props) {
             .catch(err => console.log(err.res.data.errMsg))
     }
 
+
     // GET USER ISSUES
     function getUserIssues() {
         userAxios.get('/api/issue/user')
@@ -115,10 +116,10 @@ export default function UserProvider(props) {
     // ADD A COMMENT
     function addComment( newComment, issueId ) {
         // userAxios.post(`/api/issue/${issueId}/comments`, newComment)
-        userAxios.post(`/api/comment/new`, newComment)
+        userAxios.post(`/api/comment/new/${issueId}`, newComment)
             .then(res => setComments(prevState => ([
                 ...prevState,
-                newComment                
+                res.data
             ])))
             .catch(err => console.log( err.response.data.errMsg ) )
             return getAllComments()
