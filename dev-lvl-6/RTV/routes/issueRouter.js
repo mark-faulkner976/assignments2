@@ -36,9 +36,7 @@ issuesRouter.get("/findUser/:user", ( req, res, next ) => {
 // get all with info
 issuesRouter.get( "/getallinfo", async ( req, res, next )  => {
   try {
-
     const issues = await Issue.find()
-
     const issuesWithInfo = await Promise.all( issues.map( async (issue) => {
       const comments = await Comment.find( { issueId: issue._id } )
       const user = await User.findById( issue.user )

@@ -1,3 +1,4 @@
+// import axios from "axios"
 const xhr = new XMLHttpRequest()
         // method  // url                     // async?
 xhr.open("GET", "https://api.vschool.io/pokemon", true)

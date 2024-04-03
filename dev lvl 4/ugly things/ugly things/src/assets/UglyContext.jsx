@@ -5,8 +5,6 @@ const UglyContext = React.createContext()
 
 function UglyContextProvider(props) {
 
-    
-
     const [uglyThing, setUglyThing] = useState({
         title: "",
         description: "",

@@ -21,25 +21,39 @@ const Show = require( '../models/show' )
 
 
 // add new fav
-favRouter.post( '/new', ( req, res, next) => {
+// favRouter.post( '/new', ( req, res, next) => {
+//     req.body.userId = req.auth._id
+//     const newFav = new Show( req.body )
+
+//     try {
+//         newFav.save(( err, show ) => {
+//             if( err ) {
+//                 res.send( err )
+//             } else {
+//                 res.send( show )
+//                 // console.log( 'fav saved: ', show )
+//             }
+//         } )
+//     } catch {
+//         res.status( 500 )
+//         return res.send({ error : "favRouter request Error!" })
+//     }
+
+// } )
+
+// async
+favRouter.post( '/new', async (req, res, next ) => {
     req.body.userId = req.auth._id
-    const newFav = new Show( req.body )
-
     try {
-        newFav.save(( err, show ) => {
-            if( err ) {
-                res.send( err )
-            } else {
-                res.send( show )
-                // console.log( 'fav saved: ', show )
-            }
-        } )
-    } catch {
-        res.status( 500 )
-        res.send({ error : "favRouter request Error!" })
-    }
+        const newFav = new Show( req.body )
+        const savedFav = await newFav.save()
 
-} )
+        return res.status( 201 ).send( savedFav )
+    } catch (error) {
+        res.status( 500 )
+        return next( error )
+    }
+})
 
 // get all user favs
 favRouter.get( "/:userId", ( req, res, next ) => {

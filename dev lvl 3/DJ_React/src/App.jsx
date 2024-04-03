@@ -12,7 +12,7 @@ export default function App() {
       />
     )
   })
-
+  
   function blackAndWhite() {
     setColors(prevColor => prevColor[0] === "white" ? ["black", 'black', 'black', 'black'] : ["white", 'white', 'white', 'white']) // adds a bunch of new divs, not sure why
     console.log(colors)

@@ -4,20 +4,32 @@ const Comment = require( '../models/comment' );
 
 
 // get all comments on an issue
-commentRouter.get( "/", ( req, res, next ) => {
+// commentRouter.get( "/", ( req, res, next ) => {
+//     try { 
+//         Comment.find(
+//         ( err, comments ) => {
+//             if( err ) {
+//                 res.status( 500 )
+//                 return next( err )
+//             }
+//             res.status( 200 ).send( comments )
+//         })
+//     }
+//     catch {
+//         res.status(500)
+//         res.send({ error : "Get error!" })
+//     }
+// } )
+
+// new get
+commentRouter.get( "/", async ( req, res, next ) => {
     try { 
-        Comment.find(
-        ( err, comments ) => {
-            if( err ) {
-                res.status( 500 )
-                return next( err )
-            }
-            res.status( 200 ).send( comments )
-        })
+        const comment = await Comment.find()
+        return res.status( 200 ).send( comment )
     }
     catch {
         res.status(500)
-        res.send({ error : "Get error!" })
+        return next( err )
     }
 } )
 

@@ -12,7 +12,6 @@ function NPCContextProvider(props) {
         .then(data => setNPCArray(data.data))
     }, [NPCArray.length])
 
-
     console.log(NPCArray)
 
     return(
