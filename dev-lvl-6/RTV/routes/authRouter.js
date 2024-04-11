@@ -31,6 +31,7 @@ const jwt = require("jsonwebtoken")
 
 authRouter.post("/signup", async (req, res, next) => {
     try {
+
         const user = await User.findOne({ username: req.body.username.toLowerCase() });
 
         // Make sure unique username
@@ -44,7 +45,7 @@ authRouter.post("/signup", async (req, res, next) => {
         const savedUser = await newUser.save();
 
         const token = jwt.sign(savedUser.toObject(), process.env.SECRET);
-        return res.status(201).send({ token, user: savedUser });
+        return res.status(201).send({ token, user: savedUser.withoutPassword() });
     } catch (err) {
         res.status(500);
         return next(err);
@@ -52,30 +53,96 @@ authRouter.post("/signup", async (req, res, next) => {
 });
 
 // Login
-authRouter.post( "/login", ( req, res, next ) => {
-    User.findOne( { username: req.body.username.toLowerCase() }, ( err, user ) => {
-        if( err ) {
-            res.status( 500 )
-            return next( err )
-        }
-        if( !User ) {
-            res.status( 403 )
-            return next( new Error( "Username or Password are incorrect" ) )
-        }
-        user.checkPassword( req.body.password, ( err, isMatch ) => {
-            if( err ) {
-              res.status( 403 )
-              return next( new Error( "Username or Password are incorrect" ) )
-            }
-            if( !isMatch ) {
-              res.status( 403 )
-              return next( new Error( "Username or Password are incorrect" ) )
-            }
-            const token = jwt.sign(user.withoutPassword(), process.env.SECRET)
-            return res.status( 200 ).send( { token, user: user.withoutPassword() } )
-          } )
-    } ) 
-} )
+// authRouter.post( "/login", ( req, res, next ) => {
+//     User.findOne( { username: req.body.username.toLowerCase() }, ( err, user ) => {
+//         if( err ) {
+//             res.status( 500 )
+//             return next( err )
+//         }
+//         if( !User ) {
+//             res.status( 403 )
+//             return next( new Error( "Username or Password are incorrect" ) )
+//         }
+//         user.checkPassword( req.body.password, ( err, isMatch ) => {
+//             if( err ) {
+//               res.status( 403 )
+//               return next( new Error( "Username or Password are incorrect" ) )
+//             }
+//             if( !isMatch ) {
+//               res.status( 403 )
+//               return next( new Error( "Username or Password are incorrect" ) )
+//             }
+//             const token = jwt.sign(user.withoutPassword(), process.env.SECRET)
+//             return res.status( 200 ).send( { token, user: user.withoutPassword() } )
+//           } )
+//     } ) 
+// } )
 
+// authRouter.post( "/login", async ( req, res, next ) => {
+//     try {
+//         const user = await User.findOne( { username: req.body.username.toLowerCase() } )
+
+//         if (!user) {
+//             res.status( 403 )
+//             return next( new Error( "Username or Password are incorrect" ) )
+//         }
+
+//         user.checkPassword( req.body.password, () => {
+//             const token = jwt.sign(user.withoutPassword(), process.env.SECRET)
+//             return res.status( 200 ).send( { token, user: user.withoutPassword() } )
+//         })
+        
+
+//     } catch (error) {
+//         res.status( 403 )
+//         return next( new Error( "Username or Password are incorrect" ) )
+//     }
+// } )
+
+authRouter.post("/login", async (req, res, next) => {
+    try {
+        const user = await User.findOne({ username: req.body.username.toLowerCase() });
+
+        if (!user) {
+            res.status(403);
+            return next(new Error("Username or Password are incorrect"));
+        }
+
+        const isMatch = await user.checkPassword(req.body.password);
+
+        if (!isMatch) {
+            res.status(403);
+            return next(new Error("Username or Password are incorrect"));
+        }
+
+        const token = jwt.sign(user.withoutPassword(), process.env.SECRET);
+        return res.status(200).send({ token, user: await user.withoutPassword() });
+    } catch (err) {
+        res.status(500);
+        return next(err);
+    }
+});
+
+
+// authRouter.post("/login", async (req, res, next) => {
+//     try {
+//         const user = await User.findOne({ username: req.body.username.toLowerCase() });
+
+//         if (!user) {
+//             return res.status(401).send({ message: "Username or Password are incorrect" });
+//         }
+
+//         const isMatch = await user.checkPassword(req.body.password);
+
+//         if (!isMatch) {
+//             return res.status(401).send({ message: "Username or Password are incorrect" });
+//         }
+
+//         const token = await jwt.sign(user.withoutPassword(), process.env.SECRET);
+//         return res.status(200).send({ token, user: await user.withoutPassword() });
+//     } catch (err) {
+//         return res.status(500).send({ message: "Internal Server Error" });
+//     }
+// });
 
 module.exports = authRouter
